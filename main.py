@@ -6,4 +6,3 @@ cursor = db_connection.cursor() # Cria uma variável cursor que fica com o retor
 nome = input("Digite seu nome: ") # Usuário digita o nome
 cursor.execute(f"INSERT INTO Cliente(nome,cpf,saldo) VALUES ('{nome}','45678912399',0)") # Deixamos a query que salva no banco de dados pronta pra ser chamada
 db_connection.commit() # Enviamos todas as querys prontas pra o banco
-print(cursor) # Printa o retorno do resultado da query
