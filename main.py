@@ -23,3 +23,6 @@ def listar_cliente():
     db_connection.close()
 
 listar_cliente()
+
+
+# teste
