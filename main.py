@@ -11,8 +11,6 @@ def cadastrar_cliente():
     db_connection.commit() # Enviamos todas as querys prontas pra o banco
     db_connection.close()
 
-
-
 def listar_cliente():
     db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
     cursor = db_connection.cursor()
@@ -23,6 +21,20 @@ def listar_cliente():
     db_connection.close()
 
 listar_cliente()
+
+def menu_geral():
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    print("1 - Menu Cliente")
+    print("2 - Menu Lançamento")
+    print("3 - Menu Categoria")
+    try:
+        op=input("Digite dentre as opções a seguir: ")
+        if op==1:
+
+
+    db_connection.close()
+
 
 
 # teste
