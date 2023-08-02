@@ -31,6 +31,11 @@ def menu_geral():
     try:
         op=input("Digite dentre as opções a seguir: ")
         if op==1:
+            print("1 - Cadastrar Cliente")
+            print("2 - Deletar Cliente")
+            print("3 - Listar Cliente")
+    except:
+        print("Digite uma opção válida!")
 
 
     db_connection.close()
