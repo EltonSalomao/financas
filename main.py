@@ -37,8 +37,18 @@ def listar_lançamento():
     resultado=cursor.fetchall()
     for lançamento in resultado:
         print(lançamento)
-
     db_connection.close()
+
+def del_lançamento():
+    listar_lançamento()
+    id = int(input("Digite o ID: "))
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(f"DELETE from Lancamento WHERE id_lancamento={id}") # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    resultado=cursor.fetchall()
+    for lançamento in resultado:
+        print(lançamento)
+        db_connection.close()
 
 def cadastrar_categoria():
     nome=input("Digite o nome da categoria: ")
