@@ -83,7 +83,7 @@ def menu_geral():
     db_connection.close()
 
 
-cadastrar_categoria()
+deletar_cliente()
 
 # teste
 # teste 2
