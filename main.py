@@ -30,8 +30,6 @@ def listar_cliente():
         print(cliente)
     db_connection.close()
 
-cadastrar_cliente()
-
 def menu_geral():
     db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
     cursor = db_connection.cursor()
@@ -40,23 +38,23 @@ def menu_geral():
     print("3 - Menu Categoria")
     try:
         op=input("Digite dentre as opções a seguir: ")
-        if op==1:
+        if op=="1":
             print("1 - Cadastrar Cliente")
             print("2 - Deletar Cliente")
             print("3 - Listar Cliente")
             opcli=input("Digite a opção que você deseja: ")
-            if opcli==1:
+            if opcli=="1":
                 cadastrar_cliente()
-            elif opcli==2:
+            elif opcli=="2":
                 deletar_cliente()
-            elif opcli==3:
+            elif opcli=="3":
                 listar_cliente()
 
-        elif op==2:
+        elif op=="2":
             print("1 - Cadastrar Lançamento")
             print("2 - Deletar Lançamento")
             print("3 - Listar Lançamentos")
-        elif op==3:
+        elif op=="3":
             print("1 - Cadastrar Categoria")
             print("2 - Deletar Categoria")
             print("3 - Listar Categorias")
@@ -68,5 +66,4 @@ def menu_geral():
 
 
 
-# teste
-# teste 2
+menu_geral()
