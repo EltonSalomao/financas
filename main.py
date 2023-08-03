@@ -30,6 +30,23 @@ def listar_cliente():
         print(cliente)
     db_connection.close()
 
+def listar_lançamento():
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(f"SELECT * from Lancamento") # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    resultado=cursor.fetchall()
+    for lançamento in resultado:
+        print(lançamento)
+
+    db_connection.close()
+
+def cadastrar_categoria():
+    nome=input("Digite o nome da categoria: ")
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(f"INSERT INTO Categoria(nome) VALUES ('{nome}')") # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    db_connection.commit() # Enviamos todas as querys prontas pra o banco
+    db_connection.close()
 
 def menu_geral():
     db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
@@ -65,17 +82,8 @@ def menu_geral():
 
     db_connection.close()
 
-def listar_lançamento():
-    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
-    cursor = db_connection.cursor()
-    cursor.execute(f"SELECT * from Lancamento") # Deixamos a query que salva no banco de dados pronta pra ser chamada
-    resultado=cursor.fetchall()
-    for lançamento in resultado:
-        print(lançamento)
 
-    db_connection.close()
-
-listar_lançamento()
+cadastrar_categoria()
 
 # teste
 # teste 2
