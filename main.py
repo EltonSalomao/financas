@@ -30,7 +30,6 @@ def listar_cliente():
         print(cliente)
     db_connection.close()
 
-cadastrar_cliente()
 
 def menu_geral():
     db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
@@ -66,7 +65,17 @@ def menu_geral():
 
     db_connection.close()
 
+def listar_lançamento():
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(f"SELECT * from Lancamento") # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    resultado=cursor.fetchall()
+    for lançamento in resultado:
+        print(lançamento)
 
+    db_connection.close()
+
+listar_lançamento()
 
 # teste
 # teste 2
