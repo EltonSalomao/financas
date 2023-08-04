@@ -113,7 +113,7 @@ def menu_geral():
             print("3 - Listar Lançamentos")
             oplan=input("Digite a opção desejada: ")
             if oplan=="1":
-                
+                cadastrar_lancamento()
             elif oplan=="2":
                 deletar_lançamento()
             elif oplan=="3":
