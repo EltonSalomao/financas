@@ -34,9 +34,14 @@ def cadastrar_lancamento():
     listar_cliente()
     descricao=(input("Digite a descrição do valor lançado: "))
     valor=float(input("Digite o valor a ser lançado: "))
+    print("1 - Receita")
+    print("2 - Despesa")
+    tipo=input("Digite a opção desejada: ")
+    if tipo=="2":
+        valor *= -1
     data_lancamento=(input("Digite a data que você está lançando:"))
     id_cliente=int(input("Informe sobre o seu ID: "))
-    id_categoria=int(input("Informe sobre a categoria do produto: "))
+    id_categoria=int(input("Informe o ID da categoria: "))
     db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias')
     cursor = db_connection.cursor()
     cursor.execute(f"INSERT INTO lancamento (data_lancamento, valor, descricao, id_cliente, id_categoria) VALUES ('{data_lancamento}', {valor}, '{descricao}', {id_cliente}, {id_categoria}) ")
@@ -136,4 +141,4 @@ def menu_geral():
     db_connection.close()
 
 
-deletar_categoria()
+cadastrar_lancamento()
