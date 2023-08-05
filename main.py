@@ -1,34 +1,36 @@
 import mysql.connector
 from mysql.connector import errorcode
 
+def inserir_deletar(query_sql):
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(query_sql) # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    db_connection.commit() # Enviamos todas as querys prontas pra o banco
+    db_connection.close()
+
+def consultar(query_sql):
+    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
+    cursor = db_connection.cursor()
+    cursor.execute(query_sql) # Deixamos a query que salva no banco de dados pronta pra ser chamada
+    resultado=cursor.fetchall()
+    db_connection.close()
+    return resultado
 
 def cadastrar_cliente():
     nome=input("Digite o seu nome: ")
     cpf=input("Digite o seu cpf: ")
-    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
-    cursor = db_connection.cursor()
-    cursor.execute(f"INSERT INTO Cliente(nome,cpf,saldo) VALUES ('{nome}','{cpf}',0)") # Deixamos a query que salva no banco de dados pronta pra ser chamada
-    db_connection.commit() # Enviamos todas as querys prontas pra o banco
-    db_connection.close()
+    inserir_deletar(f"INSERT INTO Cliente(nome,cpf,saldo) VALUES ('{nome}','{cpf}',0)")
 
 def deletar_cliente():
     listar_cliente()
     id = int(input("Digite o ID do Cliente a ser deletado: "))
-    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
-    cursor = db_connection.cursor()
-    cursor.execute(f"DELETE from Cliente WHERE id_cliente={id}") # Deixamos a query que salva no banco de dados pronta pra ser chamada
-    db_connection.commit() # Enviamos todas as querys prontas pra o banco
-    db_connection.close()
+    inserir_deletar(f"DELETE from Cliente WHERE id_cliente={id}")
 
 
 def listar_cliente():
-    db_connection = mysql.connector.connect(host='192.168.188.165', port='3306', user='admin', password='admin', database='financias') # Abrindo conexão com o banco de dados
-    cursor = db_connection.cursor()
-    cursor.execute(f"SELECT * from Cliente") # Deixamos a query que salva no banco de dados pronta pra ser chamada
-    resultado=cursor.fetchall()
-    for cliente in resultado:
+    clientes = consultar(f"SELECT * from Cliente")
+    for cliente in clientes:
         print(cliente)
-    db_connection.close()
 
 def cadastrar_lancamento():
     listar_cliente()
@@ -141,4 +143,4 @@ def menu_geral():
     db_connection.close()
 
 
-cadastrar_lancamento()
+listar_cliente()
